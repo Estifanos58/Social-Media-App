@@ -1,6 +1,6 @@
 import { View, Text, TextInput, Image, StyleSheet } from "react-native";
 
-const Input = ({title, placeholder}: {title: 'Email' | 'Password'; placeholder:string;}) => {
+const Input = ({title, placeholder, isPassword}: {title: 'Email' | 'Password'; placeholder:string; isPassword: boolean}) => {
 
     return (
         <>
@@ -8,7 +8,7 @@ const Input = ({title, placeholder}: {title: 'Email' | 'Password'; placeholder:s
             <Text style={style.title}>{title}</Text>
             <View style={style.input}>
                 <Image style={style.icon} source={title ===  "Email" ? require('@/assets/icons/email.png') : require('@/assets/icons/question.png')}/>
-                <TextInput style={style.inputText} placeholder={placeholder} secureTextEntry={true}/>
+                <TextInput style={style.inputText} placeholder={placeholder} secureTextEntry={isPassword}/>
             </View>
         </View>
         </>
@@ -41,6 +41,7 @@ const style = StyleSheet.create({
     inputText: {
         fontSize: 16,
         color: '#000',
+        flex: 1,
     },
     title: {
         color: "#1E3652",
