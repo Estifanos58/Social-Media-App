@@ -1,6 +1,8 @@
-import { View, Text, TextInput, Image, StyleSheet } from "react-native";
+import { useState } from "react";
+import { View, Text, TextInput, Image, StyleSheet, TouchableOpacity } from "react-native";
 
-const Input = ({title, placeholder, isPassword}: {title: 'Email' | 'Password'; placeholder:string; isPassword: boolean}) => {
+const Input = ({title, value, onChange, placeholder, isPassword}: {title: 'Email' | 'Password'; placeholder:string; value: string; onChange:any;  isPassword: boolean}) => {
+    const [isPasswordVisible, setIsPasswordVisible] = useState(false)
 
     return (
         <>
@@ -8,7 +10,8 @@ const Input = ({title, placeholder, isPassword}: {title: 'Email' | 'Password'; p
             <Text style={style.title}>{title}</Text>
             <View style={style.input}>
                 <Image style={style.icon} source={title ===  "Email" ? require('@/assets/icons/email.png') : require('@/assets/icons/question.png')}/>
-                <TextInput style={style.inputText} placeholder={placeholder} secureTextEntry={isPassword}/>
+                <TextInput value={value} onChange={onChange} style={style.inputText} placeholder={placeholder} secureTextEntry={isPassword && isPasswordVisible}/>
+                {isPassword && <TouchableOpacity onPress={() => setIsPasswordVisible(!isPasswordVisible)}><Image style={style.icon} source={isPasswordVisible ? require('@/assets/icons/eye-open.png') : require('@/assets/icons/closed-eye.png')} /></TouchableOpacity>}
             </View>
         </View>
         </>

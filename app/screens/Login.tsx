@@ -1,10 +1,21 @@
-import { StyleSheet, Text, View } from "react-native"
+import { Alert, NativeSyntheticEvent, StyleSheet, Text, TextInputChangeEventData, View } from "react-native"
 import Logo  from "../components/shared/Logo"
 import Input  from "../components/shared/Input"
 import Button from "../components/shared/Button"
 import CustomBtn from "../components/CustomBtn"
+import { FormEvent, useState } from "react"
 
 export const Login = () => {
+
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+
+    const handleSubmit = () => {
+        Alert.alert("Hi")
+        console.log({"Email: ": email, "password: ": password })
+        // Add your login logic here
+    }
+
 
     return(
         <View>
@@ -14,9 +25,9 @@ export const Login = () => {
                     <Logo/>
                 </View>
                 <View style={style.InputContainer}>
-                    <Input title="Email" placeholder="Enter your email" isPassword={false}/>
-                    <Input title="Password" placeholder="Enter your password" isPassword={true}/>
-                    <Button title="Log In"/>
+                    <Input value={email} onChange={(e: NativeSyntheticEvent<TextInputChangeEventData>)=>setEmail(e.nativeEvent.text)} title="Email" placeholder="Enter your email" isPassword={false}/>
+                    <Input value={password} onChange={(e: NativeSyntheticEvent<TextInputChangeEventData>)=>setPassword(e.nativeEvent.text)} title="Password" placeholder="Enter your password" isPassword={true} />
+                    <Button onPress={handleSubmit} title="Log In"/>
                 </View>
                 <View style={style.HrContainer}>
                     <View style={style.hr}/>
