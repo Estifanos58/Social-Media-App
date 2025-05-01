@@ -1,10 +1,11 @@
 import { Text, View } from "react-native"
+import { SharedProfile } from "../components/SharedProfile"
 
 const  Home  = () => {
     return (
         <>
         <View>
-            <Text>Hello</Text>
+            <SharedProfile/>
         </View>
         </>
     )
