@@ -13,7 +13,6 @@ export default function Index() {
     const router = useRouter()
 
     const handleSubmit = () => {
-        Alert.alert("Hi")
         console.log({"Email: ": email, "password: ": password })
         router.replace('/(tabs)/Home')
         // Add your login logic here

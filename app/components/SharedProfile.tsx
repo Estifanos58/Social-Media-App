@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     },
     profileContainer: {
         display:'flex',
-        gap:4,
+        gap:10,
         flexDirection:'row',
         alignItems:'center',
     },

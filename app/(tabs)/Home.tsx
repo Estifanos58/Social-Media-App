@@ -5,6 +5,7 @@ import ChannelName from "../components/ChannelName";
 import { useState } from "react";
 import DirectMessage from "../components/DIrectMessage";
 import { ScrollView } from "react-native";
+import Groups from "../components/Groups";
 
 const Home = () => {
   const channels = [
@@ -42,7 +43,23 @@ const Home = () => {
   const groups = [
     {
       id: 1,
-      name: "Design Team"
+      name: "Design Team",
+      lastText: "Meeting in 10 minutes",
+      notification: 3,
+      members: [
+        {
+          id: 1,
+          image: ""
+        },
+        {
+          id: 2,
+          image: ""
+        },
+        {
+          id: 3,
+          image: ""
+        },
+      ]
     }
   ]
   const [selected, setSelected] = useState(channels[0].id);
@@ -74,6 +91,14 @@ const Home = () => {
           </View>
 
           <Header title="groups"/>
+          <View style={styles.Container}>
+         ` {
+            groups.map((group)=>(
+              <Groups key={group.id} group={group}/>
+            ))
+          }`
+          </View>
+          
 
         </ScrollView>
       </View>
@@ -89,7 +114,7 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "column",
     gap: 10,
-    marginVertical: 20,
+    marginVertical: 15,
   },
 });
 
