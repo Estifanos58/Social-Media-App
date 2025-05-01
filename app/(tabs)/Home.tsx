@@ -3,6 +3,8 @@ import { SharedProfile } from "../components/SharedProfile";
 import { Header } from "../components/Header";
 import ChannelName from "../components/ChannelName";
 import { useState } from "react";
+import DirectMessage from "../components/DIrectMessage";
+import { ScrollView } from "react-native";
 
 const Home = () => {
   const channels = [
@@ -20,14 +22,37 @@ const Home = () => {
     },
   ];
 
+  const directMessages = [
+    {
+        id:1,
+        name: "James Wilson",
+        lastText:"Can we discuss the new feature",
+        image: "",
+        lastTime: '6w',
+    },
+    {
+        id:2,
+        name: "Sarah Parker",
+        lastText:"Thanks for the update",
+        image: "",
+        lastTime: '1h',
+    },
+  ]
+
+  const groups = [
+    {
+      id: 1,
+      name: "Design Team"
+    }
+  ]
   const [selected, setSelected] = useState(channels[0].id);
   return (
     <>
       <View>
         <SharedProfile />
-        <View style={styles.mainContainer}>
+        <ScrollView style={styles.mainContainer}>
           <Header title={"channels"} />
-          <View style={styles.channelsContainer}>
+          <View style={styles.Container}>
             {channels.map((channel) => (
               <ChannelName
                 selected={selected}
@@ -37,8 +62,20 @@ const Home = () => {
               />
             ))}
           </View>
+
           <Header title="direct Messages" />
-        </View>
+
+          <View style={styles.Container}>
+            {
+                directMessages.map((messages)=>(
+                    <DirectMessage key={messages.id} messages={messages}/>
+                ))
+            }
+          </View>
+
+          <Header title="groups"/>
+
+        </ScrollView>
       </View>
     </>
   );
@@ -48,7 +85,7 @@ const styles = StyleSheet.create({
   mainContainer: {
     padding: 10,
   },
-  channelsContainer: {
+  Container: {
     display: "flex",
     flexDirection: "column",
     gap: 10,
