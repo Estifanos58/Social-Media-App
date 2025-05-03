@@ -6,6 +6,7 @@ import Home from "@/assets/icons/home.svg";
 import Search from "@/assets/icons/search.svg";
 import Notification from "@/assets/icons/notification.svg";
 import CustomTabButton from "../components/CustomTabButton";
+import { View } from "react-native";
 
 const tabs = [
   {
@@ -36,7 +37,6 @@ const tabs = [
 ];
 
 export default function TabLayout() {
-  const [selected, setSelected] = useState(1);
 
   return (
     <Tabs screenOptions={{
@@ -45,19 +45,19 @@ export default function TabLayout() {
     }}>
       {tabs.map((tab, index) => (
         <Tabs.Screen
-          listeners={{
-            tabPress: () => setSelected(tab.id),
-          }}
           key={index}
           name={tab.name}
           options={{
             headerShown: false,
-            tabBarIcon: () => (
-              <Icon
-                name={tab.icon}
-                size={20}
-                style={tab.id === selected && { color: "yellow" }}
-              />
+            tabBarIcon: ({focused}) => (
+              <View>  
+                  <Icon
+                  name={tab.icon}
+                  size={20}
+                  style={focused && { color: "#FDA301" }}
+                />
+              </View>
+              
             ),
           }}
         />

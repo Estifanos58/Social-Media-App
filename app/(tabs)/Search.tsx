@@ -1,38 +1,11 @@
 import { FlatList, Image, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native"
 import SearchBox from "../components/shared/Search"
-import Icon  from "react-native-vector-icons/Feather"
-import { Link } from "expo-router"
+import Icon  from "react-native-vector-icons/MaterialIcons"
+import { Link, router } from "expo-router"
 import { useState } from "react"
 import { Header } from "../components/Header"
+import { horizontalScroll, recentSearch } from "@/constants/data"
 
-const horizontalScroll = [
-    {
-        id: 1,
-        name: "All",
-        link: '#/Home'
-    },
-    {
-        id: 2,
-        name: "Message",
-        link: '#/Notification'
-    },
-    {
-        id: 3,
-        name: "Channels",
-        link: '#/Profile'
-    },
-    {
-        id: 4,
-        name: "Files",
-        link: '#/Search'
-    },
-    
-    {
-        id: 5,
-        name: "Files",
-        link: '#/Search'
-    },
-]
 
 
 const  Search = () => {
@@ -44,7 +17,7 @@ const  Search = () => {
             <View style={styles.searchBarContainer}>
                 {/*  */}
                 <View>
-                    <Icon size={20} name="home" />
+                    <Icon onPress={()=> router.back()} size={20} style={{fontWeight: '800'}} color={'gray'} name="arrow-back" />
                 </View>
                 {/* Search */}
                 <SearchBox placeholder="Search in KaiMesh"/>
@@ -64,6 +37,20 @@ const  Search = () => {
             <View style={styles.mainContainer}>
                  {/* Recent Search */}
                  <Header title="recent searches"/>
+                 <View style={styles.recentMainCont}>
+                    {recentSearch.map((search)=>(
+                        <View style={styles.recentComp}> 
+                            <View style={styles.recentNameCont}>
+                                <Icon name="history" size={20} color={'#949494'}/>
+                                <Text style={styles.recentText}>{search.name}</Text>
+                            </View>
+                            <Icon name="close" size={20} color={'#949494'}/>
+                            
+                        </View>
+                    ))}
+                 </View>
+                 {/* Suggested */}
+                 <Header title="suggested"/>
 
             </View>
            
@@ -116,7 +103,33 @@ const styles = StyleSheet.create({
     },
     mainContainer: {
         padding: 15
+    },
+    recentMainCont: {
+        marginVertical: 5,
+        marginBottom: 10
+    },
+    recentComp :{
+        padding: 10,
+        paddingVertical: 20,
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent:'space-between',
+        alignItems: 'center',
+        backgroundColor: 'white',
+        marginTop: 10,
+        borderRadius: 10
+    },
+    recentNameCont: {
+        display: 'flex',
+        flexDirection : 'row',
+        alignItems: 'center',
+        gap: 10
+    },
+    recentText: {
+        color: '#1E3652',
+        fontSize: 16
     }
+
 })
 
 export default Search
