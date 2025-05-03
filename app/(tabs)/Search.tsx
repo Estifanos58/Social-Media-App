@@ -4,7 +4,9 @@ import Icon  from "react-native-vector-icons/MaterialIcons"
 import { Link, router } from "expo-router"
 import { useState } from "react"
 import { Header } from "../components/Header"
-import { horizontalScroll, recentSearch } from "@/constants/data"
+import { horizontalScroll, recentSearch, seggested } from "@/constants/data"
+import Groups from "../components/Groups"
+import ChannelName from "../components/ChannelName"
 
 
 
@@ -51,6 +53,11 @@ const  Search = () => {
                  </View>
                  {/* Suggested */}
                  <Header title="suggested"/>
+                 {
+                    seggested.map((item)=> (
+                        <ChannelName key={item.id} channel={item}/>
+                    ))
+                 }
 
             </View>
            

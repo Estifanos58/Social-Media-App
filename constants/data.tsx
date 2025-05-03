@@ -37,3 +37,11 @@ export const recentSearch = [
         name: 'marketing campaign'
     },
 ]
+
+export const seggested = [
+    {
+        id: 1,
+        name: 'marketing',
+        description: 'Channel . 45 members'
+    }
+]

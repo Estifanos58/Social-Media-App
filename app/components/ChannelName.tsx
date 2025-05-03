@@ -5,8 +5,8 @@ const ChannelName = ({
   setSelected,
   channel,
 }: {
-    selected:number,
-    setSelected: any,
+    selected?:number,
+    setSelected?: any,
     channel: any
 }) => {
   return (
